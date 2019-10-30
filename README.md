@@ -19,9 +19,9 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 ![Particle and cell tracking](img/PTC_Embryo.png)
 
 # Case studies using CINDA
-## Identity inference using more history frames retrieve identities of occluded objects
+1. CINDA makes it possible to do identity inference using more history frames, which retrieve identities of occluded objects
 ![kitti-car illustration](img/KITTI_track_res.png)
-## Enable us to iteratively refine tracking results on larger scale data
+2. CINDA enable us to iteratively refine tracking results on larger scale data (see Table 4)
 ![Embryo_res](img/Embryo_res.png)
 
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
