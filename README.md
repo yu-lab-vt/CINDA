@@ -18,7 +18,10 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 ### On microscopy imaging data for particle and cell tracking
 ![Particle and cell tracking](img/theoretical_bound.png)
 
-
-
+# Case studies using CINDA
+## Identity inference using more history frames retrieve identities of occluded objects
+![kitti-car illustration](img/KITTI_track_res.png)
+## Enable us to iteratively refine tracking results on larger scale data
+![Embryo_res](img/Embryo_res.png)
 
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
