@@ -13,7 +13,9 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 <p align="center">
   <img height="170" src="img/theoretical_bound.png">
 </p>
+
 ## Pracitical efficiency comparisons with minimum-cost flow-based methods
+
 ### Experiments on natural image benchmars
 <p align="center">
   <img height="330" src="img/kitti_car.png">
