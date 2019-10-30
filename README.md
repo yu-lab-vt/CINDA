@@ -10,10 +10,14 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 
 # Efficiency comparison
 ## Theoretical bounds compared with minimum-cost flow-based methods
-![Theoretical bound of CINDA](img/theoretical_bound.png)
+<p align="center">
+  <img height="170" src="img/theoretical_bound.png">
+</p>
 ## Pracitical efficiency comparisons with minimum-cost flow-based methods
 ### Experiments on natural image benchmars
-![kitti-car dataset](img/kitti_car.png)
+<p align="center">
+  <img height="330" src="img/kitti_car.png">
+</p>
 <p align="center">
   <img height="270" src="img/cvpr_ethz.png">
 </p>
