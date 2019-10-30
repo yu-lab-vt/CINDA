@@ -8,6 +8,8 @@ CINDA was implemented using C based on the efficient implementation of cost-scal
 
 Any problem? CINDA does not work on your data? Please open an issue. We are happy to help!
 
+# Results illustration
+
 
 
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
