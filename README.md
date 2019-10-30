@@ -8,7 +8,11 @@ CINDA was implemented using C based on the efficient implementation of cost-scal
 
 Any problem? CINDA does not work on your data? Please open an issue. We are happy to help!
 
-# Results illustration
+# Efficiency comparison
+## Theoretical bounds
+
+## Pracitical comparisons
+
 
 
 
