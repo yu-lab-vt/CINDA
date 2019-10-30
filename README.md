@@ -16,7 +16,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 ![kitti-car dataset](img/kitti_car.png)
 ![CVPR19 ETHZ dataset](img/cvpr_ethz.png)
 ### On microscopy imaging data for particle and cell tracking
-![Particle and cell tracking](img/theoretical_bound.png)
+![Particle and cell tracking](img/PTC_Embryo.png)
 
 # Case studies using CINDA
 ## Identity inference using more history frames retrieve identities of occluded objects
