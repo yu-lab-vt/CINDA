@@ -4,24 +4,37 @@ CINDA (**Ci**rculation **N**etwork based **D**ata-**a**ssociation) is a minimum-
 ![Overview of CINDA](img/fig1_mot_min_cost_v3.png)
 Overview of CINDA and its comparison with minmum-cost flow-based framework.
 # Supports to Python and MATLAB
-CINDA was implemented using C based on the efficient implementation of cost-scaling algorithm [1]. Interfaces for Python and MATLAB are also provided respectively, on which the efficiency is also guaranteed. Try CINDA now!
+CINDA was implemented using C based on the efficient implementation of cost-scaling algorithm[1]. Interfaces for Python and MATLAB are also provided respectively, on which the efficiency is also guaranteed. Try CINDA now!
 
 Any problem? CINDA does not work on your data? Please open an issue. We are happy to help!
 
 # Efficiency comparison
-## Theoretical bounds
+## Theoretical bounds compared with minimum-cost flow-based methods
 ![Theoretical bound of CINDA](img/theoretical_bound.png)
-## Pracitical comparisons
-### On natural image benchmars
+## Pracitical efficiency comparisons with minimum-cost flow-based methods
+### Experiments on natural image benchmars
 ![kitti-car dataset](img/kitti_car.png)
-![CVPR19 ETHZ dataset](img/cvpr_ethz.png)
-### On microscopy imaging data for particle and cell tracking
-![Particle and cell tracking](img/PTC_Embryo.png)
+<p align="center">
+  <img height="270" src="img/cvpr_ethz.png">
+</p>
+
+### Experiments on microscopy imaging data for particle and cell tracking
+<p align="center">
+  <img height="120" src="img/PTC_Embryo.png">
+</p>
 
 # Case studies using CINDA
 1. CINDA makes it possible to do identity inference using more history frames, which retrieve identities of occluded objects
 ![kitti-car illustration](img/KITTI_track_res.png)
 2. CINDA enable us to iteratively refine tracking results on larger scale data (see Table 4)
-![Embryo_res](img/Embryo_res.png)
+<p align="center">
+  <img height="120" src="img/Embryo_res.png">
+</p>
+
+# Reference
+## Citation
+TBD
+## Peer methods and datasets
+TBD
 
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
