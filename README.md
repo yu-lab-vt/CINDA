@@ -14,9 +14,9 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 ## Pracitical comparisons
 ### On natural image benchmars
 ![kitti-car dataset](img/kitti_car.png)
-![CVPR19 ETHZ dataset](img/CVPR19_ETHZ.png)
+![CVPR19 ETHZ dataset](img/cvpr_ethz.png)
 ### On microscopy imaging data for particle and cell tracking
-![Particle and cell tracking](img/theoretical bound.png)
+![Particle and cell tracking](img/theoretical_bound.png)
 
 
 
