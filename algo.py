@@ -60,8 +60,11 @@ def mcc4mot(detection_arcs, transition_arcs):
 
 
 	mtail, mhead, mlow, macap, mcost, msz = data_process(detection_arcs, transition_arcs)
-	# print(msz)
-
+	it_flag = False
+	if isinstance(mcost[0], float):
+		mcost = [int(n * 10**7) for n in mcost]
+		it_flag = True
+    
 
 	inf_type = ctypes.c_long * msz[0]
 	a_type = ctypes.c_double * msz[2]
@@ -83,5 +86,8 @@ def mcc4mot(detection_arcs, transition_arcs):
 			new = [int(x/2) for x in sub_traj[::2]]
 			traj.append(new)
 			sub_traj = []
-
+    
+	if it_flag:
+		cost = [(float(n) / 10**7) for n in cost]
+        
 	return traj, cost

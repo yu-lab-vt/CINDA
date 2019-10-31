@@ -1,5 +1,5 @@
 function [trajectories, costs] = mcc4mot(detection_arcs,transition_arcs)
-% The min-cost circulation formulation of MAP solver for multi-object
+% The min-cost circulation formulation based MAP solver for multi-object
 % tracking.
 % INPUT: 
 % Assuming we have n detections in the video, then
@@ -8,7 +8,7 @@ function [trajectories, costs] = mcc4mot(detection_arcs,transition_arcs)
 % transition_arcs: a m x 3 matrix, each row corresponds to a transition arc
 % in the form of [detection_id_i, detection_id_j, C_i,j]
 % NOTE that the id should be unique and in the range of 1 to n. Detailed 
-% defintion can be found in section 3 of the reference:
+% defintion can be found in the user manual.
 
 % OUTPUT:
 % trajectories: cells containing the linking results; each cell contains a
@@ -48,7 +48,7 @@ tail = arcs(:,1)';
 head = arcs(:,2)';
 cost = arcs(:,3)';
 it_flag = false;
-if ~isempty(find(cost > ceil(cost), 1))
+if ~isempty(find(cost > floor(cost), 1))
     it_flag = true;
     cost = round(cost * 1e7); % assume integer cost
 end
