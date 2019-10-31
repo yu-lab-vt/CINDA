@@ -1,8 +1,9 @@
 /* min-cost flow */
 /* successive approximation algorithm */
 /* Copyright C IG Systems, igsys@eclipse.com */
-/* any use except for evaluation purposes requires a licence */
+/* any use except for pure academic research and evaluation purposes requires a licence */
 
+// thanks Hamed Pirsiavash for his intial matlab interface implementation
 
 /************************************** constants  &  parameters ********/
 
