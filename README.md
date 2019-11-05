@@ -64,6 +64,6 @@ Vision, 2015, pp. 4364–4372.
 greedy algorithms for tracking a variable number of objects,” in
 CVPR 2011. IEEE, 2011, pp. 1201–1208.
 
-[16] A. V. Goldberg, S. Hed, H. Kaplan, and R. E. Tarjan, “Minimumcost flows in unit-capacity networks,” Theory of Computing Systems,
+[16] A. V. Goldberg, S. Hed, H. Kaplan, and R. E. Tarjan, “Minimum-cost flows in unit-capacity networks,” Theory of Computing Systems,
 vol. 61, no. 4, pp. 987–1010, 2017.
 
