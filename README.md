@@ -40,7 +40,25 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 # Reference
 ## Citation
 Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework](https://arxiv.org/abs/1911.00796), 	arXiv:1911.00796.
-## Peer methods and datasets
-TBD
-
+## cs2
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
+## affinity models and identity inference solvers
+[8] S. Sharma, J. A. Ansari, J. K. Murthy, and K. M. Krishna, “Beyond
+pixels: Leveraging geometry and shape cues for online multiobject tracking,” in 2018 IEEE International Conference on Robotics
+and Automation (ICRA). IEEE, 2018, pp. 3508–3515.
+[12] J. Berclaz, F. Fleuret, E. Turetken, and P. Fua, “Multiple object
+tracking using k-shortest paths optimization,” IEEE transactions
+on pattern analysis and machine intelligence, vol. 33, no. 9, pp. 1806–
+1819, 2011.
+[13] L. Zhang, Y. Li, and R. Nevatia, “Global data association for multiobject tracking using network flows,” in 2008 IEEE Conference on
+Computer Vision and Pattern Recognition. IEEE, 2008, pp. 1–8.
+[14] P. Lenz, A. Geiger, and R. Urtasun, “Followme: Efficient online
+min-cost flow tracking with bounded memory and computation,”
+in Proceedings of the IEEE International Conference on Computer
+Vision, 2015, pp. 4364–4372.
+[15] H. Pirsiavash, D. Ramanan, and C. C. Fowlkes, “Globally-optimal
+greedy algorithms for tracking a variable number of objects,” in
+CVPR 2011. IEEE, 2011, pp. 1201–1208.
+[16] A. V. Goldberg, S. Hed, H. Kaplan, and R. E. Tarjan, “Minimumcost flows in unit-capacity networks,” Theory of Computing Systems,
+vol. 61, no. 4, pp. 987–1010, 2017.
+
