@@ -39,7 +39,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 
 # Reference
 ## Citation
-TBD
+Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework](https://arxiv.org/abs/1911.00796), 	arXiv:1911.00796.
 ## Peer methods and datasets
 TBD
 
