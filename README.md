@@ -38,7 +38,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 </p>
 
 # Reference
-## Citation
+## Please cite our paper if you find the code useful for your research.
 Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework](https://arxiv.org/abs/1911.00796), 	arXiv:1911.00796.
 ```
 @article{cinda_mot,
