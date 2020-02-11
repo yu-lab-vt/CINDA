@@ -72,7 +72,14 @@ excess_flow = 0;
 tic;
 [cost_all,~,~,~, track_vec] = cs2mex(scale, num_node, num_arc, excess_node, excess_flow, tail, head, low, acap, cost);
 toc;
-
+% handle the null set
+if cost_all >= 0 || isempty(track_vec)
+    warning(['Null trajectory set! Please check the cost design. ',...
+        'Note that high detection confidence corresponds to negative arc cost.']);
+    costs = 0;
+    trajectories = {};
+    return;
+end
 
 locs = find(track_vec<=0);
 if length(track_vec) > locs(end)
