@@ -68,7 +68,7 @@ excess_flow = 0;
 % cost = [cost, 0];
 % low = [low, 0];
 % acap = [acap, n];
-% call the cs2 function for min-cost circulation
+% call the manipulated cs2 function for min-cost circulation
 tic;
 [cost_all,~,~,~, track_vec] = cs2mex(scale, num_node, num_arc, excess_node, excess_flow, tail, head, low, acap, cost);
 toc;
