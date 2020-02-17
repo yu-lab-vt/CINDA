@@ -15,6 +15,10 @@ function [trajectories, costs] = mcc4mot(detection_arcs,transition_arcs)
 % set of ordered detection ids, which indicate a trajectory
 % costs: costs of these trajectories
 
+if ~isempty(find(detection_arcs(:,1) < 1, 1))
+    error('Id should be positive integers from 1 to n.');
+end
+
 n = size(detection_arcs,1); 
 
 m = n*3+size(transition_arcs,1);
