@@ -16,7 +16,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 
 ## Pracitical efficiency comparisons with minimum-cost flow-based methods
 
-### Experiments on natural image benchmars
+### Experiments on natural image benchmarks
 <p align="center">
   <img height="330" src="img/kitti_car.png">
 </p>
