@@ -51,6 +51,13 @@ arcs(3*n+1:end,3) = transition_arcs(:,3);
 tail = arcs(:,1)';
 head = arcs(:,2)';
 cost = arcs(:,3)';
+
+% check inf arcs
+in_valid_arcs = find(isinf(abs(cost)), 1);
+if ~isempty(in_valid_arcs)
+    error('There are arcs with infinity cost.');
+end
+
 it_flag = false;
 if ~isempty(find(cost > floor(cost), 1))
     it_flag = true;
