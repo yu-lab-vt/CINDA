@@ -53,9 +53,14 @@ head = arcs(:,2)';
 cost = arcs(:,3)';
 
 % check inf arcs
-in_valid_arcs = find(isinf(abs(cost)), 1);
+in_valid_arcs = find(isinf(abs(cost)));
 if ~isempty(in_valid_arcs)
-    error('There are arcs with infinity cost.');
+    warning('There are arcs with infinity cost. We will remove them first.');
+    tail(in_valid_arcs) = [];
+    head(in_valid_arcs) = [];
+    cost(in_valid_arcs) = [];
+    m = length(cost);
+    n = max(max(tail), max(head));
 end
 
 it_flag = false;
