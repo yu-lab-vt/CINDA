@@ -5,3 +5,5 @@ t_m = dlmread('sample/transition_mat.txt');
 %% call mcc4mot
 [trajectories, costs] = mcc4mot(d_m,t_m);
 
+cost_s = sanity_check(d_m, t_m, trajectories);
+

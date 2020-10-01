@@ -1,11 +1,26 @@
-/* min-cost flow */
-/* successive approximation algorithm */
-/* Copyright C IG Systems, igsys@eclipse.com */
-/* any use except for pure academic research and evaluation purposes requires a licence */
+/* CINDA - (CIrculation Network based Data-Association)
+* 
+* This is an improved version of cs2 algorithm for solving the unit-capacity min-cost
+* circulation problem in multi-object tracking problem[1].
+* 
+* Quite a few functions here come from cs2[2], whose copyright belongs to IG Systems.
+* Thus for any use except for pure academic research and evaluation purposes requires 
+* a licence (igsys@eclipse.com).
+*
+* Here we also want to thank Hamed Pirsiavash for his initial matlab interface 
+* implementation.
+*
+* [1] Congchao Wang, Yizhi Wang, Guoqiang Yu, "Efficient Global Multi-object Tracking 
+*     Under Minimum-cost Circulation Framework", arXiv:1911.00796.
+* [2] Andrew V. Goldberg, "An efficient implementation of a scaling minimum-cost flow 
+*     algorithm", Journal of algorithms, vol. 22, no. 1, pp. 1–29, 1997.
+*
+* Contact: Congchao Wang (ccwang AT vt DOT edu)
+* Affiliation: Yu-Lab, CBIL, Virginia Tech
+* Date: September 2020
+*/
 
-// thanks Hamed Pirsiavash for his intial matlab interface implementation
 
-/************************************** constants  &  parameters ********/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,13 +28,9 @@
 #include <string.h>
 #include <assert.h>
 
-/*#include <values.h>*/
 
-/* for measuring time */
 
 /* definitions of types: node & arc */
-
-/*#include "types_cs2.h"*/
 typedef long long int excess_t;
 typedef long long int price_t;
 
@@ -60,7 +71,7 @@ typedef /* bucket */
 } bucket;
 
 
-
+/************************************** constants  &  parameters ********/
 #define N_NODE( i ) ( ( (i) == NULL ) ? -1 : ( (i) - ndp + nmin ) )
 #define N_ARC( a ) ( ( (a) == NULL )? -1 : (a) - arp )
 
@@ -104,6 +115,7 @@ typedef /* bucket */
 
 #define MAX( x, y ) ( ( (x) > (y) ) ?  x : y )
 #define MIN( x, y ) ( ( (x) < (y) ) ? x : y )
+#define ABS( x ) ( (x) >= 0 ) ? (x) : -(x)
 
 #define OPEN( a )   ( a -> r_cap > 0 )
 #define CLOSED( a )   ( a -> r_cap <= 0 )
@@ -1895,7 +1907,7 @@ void cs2_cost_restart (double *obj_ad)
 save results using a double vector, which contains all the trajectories and costs in order
 trajectories are segmented by cost
 ****/
-price_t* pyprint(node *ndp, arc *arp, long nmin, double *cost)
+price_t* res_print(node *ndp, arc *arp, long nmin, double *cost)
 {
   node *i, *ii;
   arc *a, *b;
@@ -1979,18 +1991,17 @@ price_t* pyprint(node *ndp, arc *arp, long nmin, double *cost)
  double *macap = (double *)mxGetPr(prhs[8]);
  double *mcost = (double *)mxGetPr(prhs[9]);
 --------------------------------------------------------------*/
-int pyparse(long *msz, double *mtail, double *mhead, double *mlow, double *macap, double *mcost,
+int data_parse(long *msz, double *mtail, double *mhead, double *mlow, double *macap, double *mcost,
 	     long *n_ad, long *m_ad, node **nodes_ad, arc **arcs_ad, long *node_min_ad, 
 	     price_t *m_c_ad, long **cap_ad, long *f_sc)
   
 {
-  
+
 #define MAXLINE       100	/* max line length in the input file */
 #define ARC_FIELDS      5	/* no of fields in arc line  */
 #define NODE_FIELDS     2	/* no of fields in node line  */
 #define P_FIELDS        3       /* no of fields in problem line */
 #define PROBLEM_TYPE "min"      /* name of problem type*/
-#define ABS( x ) ( (x) >= 0 ) ? (x) : -(x)
 
 long inf_cap = 0;
 long    n,                      /* internal number of nodes */
@@ -2322,7 +2333,7 @@ price_t* pyCS2(long *msz, double *mtail, double *mhead, double *mlow, double *ma
   */
   //if (nrhs < 10) mexErrMsgTxt("Incorrect number of input arguments");
   //if (nlhs < 5)  mexErrMsgTxt("Incorrect number of output arguments");
-  pyparse(msz, mtail, mhead, mlow, macap, mcost,&n, &m, &ndp, &arp, &nmin, &c_max, &cap, &f_sc);
+  data_parse(msz, mtail, mhead, mlow, macap, mcost,&n, &m, &ndp, &arp, &nmin, &c_max, &cap, &f_sc);
   
   nodes = ndp;
   
@@ -2363,7 +2374,7 @@ price_t* pyCS2(long *msz, double *mtail, double *mhead, double *mlow, double *ma
     printf("ERROR: CS violation\n");
 #endif
   
-  price_t *track_vec = pyprint(ndp, arp, nmin, &cost);
+  price_t *track_vec = res_print(ndp, arp, nmin, &cost);
 
   free(cap);
   free(nodes - nmin);
