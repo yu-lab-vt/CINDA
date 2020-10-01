@@ -41,7 +41,7 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
       if (cap[N_ARC(a)] > 0 && cap[N_ARC(a)] - (a->r_cap) > 0)
         j++;
   }
-
+  
   plhs[1] = mxCreateDoubleMatrix(j, 1, mxREAL);
   plhs[2] = mxCreateDoubleMatrix(j, 1, mxREAL);
   plhs[3] = mxCreateDoubleMatrix(j, 1, mxREAL);
@@ -68,8 +68,8 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
       }
     }
   }
+  
   /*save trajectories*/
-
   plhs[4] = mxCreateDoubleMatrix(j, 1, mxREAL);
   double *tracks = (double *)mxGetPr(plhs[4]);
 
@@ -80,10 +80,24 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
     ni = N_NODE(ndp + n - 1); //min-cost flow formulation
   else
     ni = N_NODE(ndp); //min-cost circulation formulation
+  
+  /* One arc will never appear in two circles or paths. However, 
+  * a node may be shared, and thus we need to check if an arc 
+  * from current node is already visited when tranverse other circles. 
+  * 
+  * This condition will not be encountered if neither nodes and arcs
+  * can be shared in different circles. For example, the regular graph
+  * structure in multi-object tracking problem.
+  */
+  bool *arc_visited = (bool *)calloc(2 * m, sizeof(bool));
+  memset(&arc_visited[0], false, 2 * m * sizeof(bool));
+
   for (a = i->suspended; a != (i + 1)->suspended; a++)
   {
     if (cap[N_ARC(a)] > 0 && cap[N_ARC(a)] - (a->r_cap) > 0)
     {
+      arc_visited[N_ARC(a)] = true;
+
       //forward track the path
       b = a;
       while (N_NODE(b->head) != ni)
@@ -94,9 +108,13 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
         ii = b->head;
         for (b = ii->suspended; b != (ii + 1)->suspended; b++)
         {
-          if (cap[N_ARC(b)] > 0 && cap[N_ARC(b)] - (b->r_cap) > 0)
+          if (cap[N_ARC(b)] > 0 && cap[N_ARC(b)] - (b->r_cap) > 0 && !arc_visited[N_ARC(b)]){
+            arc_visited[N_ARC(b)] = true;
             break;
+          }
         }
+        /*if (N_NODE(b->head)==N_NODE(ii))
+          mexErrMsgTxt("Repeated loop");*/
       }
 
       tracks[j] = cost3 + b->cost;
@@ -104,7 +122,7 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
       j++;
     }
   }
-
+  //printf("we should have %ld circles\n", j);
 #ifdef COMP_DUALS
   /* find minimum price */
   cost2 = MAX_32;
@@ -492,6 +510,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mexErrMsgTxt("Incorrect number of input arguments");
   if (nlhs < 5)
     mexErrMsgTxt("Incorrect number of output arguments");
+  
   mexparse(prhs, &n, &m, &ndp, &arp, &nmin, &c_max, &cap, &f_sc);
 
   nodes = ndp;
@@ -506,12 +525,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 #endif
 
   m2 = 2 * m;
-  /*printf ("c nodes: %15ld     arcs:  %15ld\n", n, m );*/
-
+  //printf ("c nodes: %15ld     arcs:  %15ld\n", n, m );
+  
 //   t = timer();
   cs2(n, m2, ndp, arp, f_sc, c_max, cap, &cost);
 //   t = timer() - t;
-
   /*
   printf ("c time:  %15.2f     cost:  %15.0f\n", t, cost);  
   printf ("c refines:    %10ld     discharges: %10ld\n", n_refine, n_discharge);

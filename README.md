@@ -82,4 +82,4 @@ vol. 61, no. 4, pp. 987–1010, 2017.
 
 # Updates
 
-## 1)
+1) Sep.2020: Add the support to problems where detections can be shared across different trajectories.

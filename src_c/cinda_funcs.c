@@ -23,6 +23,7 @@
 
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
@@ -1927,27 +1928,49 @@ price_t* res_print(node *ndp, arc *arp, long nmin, double *cost)
     ni = N_NODE ( ndp + n - 1 ); //min-cost flow formulation
   else
     ni = N_NODE ( ndp ); //min-cost circulation formulation
-  for ( a = i -> suspended; a != (i+1)->suspended; a ++ ){
-      if ( cap[ N_ARC (a) ]  > 0 && cap[ N_ARC (a) ] - ( a -> r_cap ) > 0){
-          //forward track the path
-          b = a;
-          while(N_NODE( b -> head ) != ni){
-              cost3 += b -> cost;
-              tracks[j] = N_NODE( b -> head );
-              j++;
-              ii = b -> head;
-              for ( b = ii -> suspended; b != (ii + 1)->suspended; b ++ ){
-                  if ( cap[ N_ARC (b) ]  > 0 && cap[ N_ARC (b) ] - ( b -> r_cap ) > 0)
-                      break;
-              }
+  
+  /* One arc will never appear in two circles or paths. However, 
+  * a node may be shared, and thus we need to check if an arc 
+  * from current node is already visited when tranverse other circles. 
+  * 
+  * This condition will not be encountered if neither nodes and arcs
+  * can be shared in different circles. For example, the regular graph
+  * structure in multi-object tracking problem.
+  */
+  bool *arc_visited = (bool *)calloc(2 * m, sizeof(bool));
+  memset(&arc_visited[0], false, 2 * m * sizeof(bool));
+
+  for (a = i->suspended; a != (i + 1)->suspended; a++)
+  {
+    if (cap[N_ARC(a)] > 0 && cap[N_ARC(a)] - (a->r_cap) > 0)
+    {
+      arc_visited[N_ARC(a)] = true;
+
+      //forward track the path
+      b = a;
+      while (N_NODE(b->head) != ni)
+      {
+        cost3 += b->cost;
+        tracks[j] = N_NODE(b->head);
+        j++;
+        ii = b->head;
+        for (b = ii->suspended; b != (ii + 1)->suspended; b++)
+        {
+          if (cap[N_ARC(b)] > 0 && cap[N_ARC(b)] - (b->r_cap) > 0 && !arc_visited[N_ARC(b)]){
+            arc_visited[N_ARC(b)] = true;
+            break;
           }
-          
-          tracks[j] = cost3 + b->cost;
-          cost3 = 0;
-          j++;
+        }
+        /*if (N_NODE(b->head)==N_NODE(ii))
+          mexErrMsgTxt("Repeated loop");*/
       }
-          
+
+      tracks[j] = cost3 + b->cost;
+      cost3 = 0;
+      j++;
+    }
   }
+
   price_t *tracks_nonredundant = (price_t*) calloc ( j+1,   sizeof(price_t) ); 
   tracks_nonredundant[0] = j;// help python.ctypes to determine result length
   for (f=0; f<j; f++)
