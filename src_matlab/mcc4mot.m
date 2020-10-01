@@ -86,7 +86,7 @@ excess_flow = 0;
 % acap = [acap, n];
 % call the manipulated cs2 function for min-cost circulation
 tic;
-[cost_all,~,~,~, track_vec] = cs2mex(scale, num_node, num_arc, excess_node, excess_flow, tail, head, low, acap, cost);
+[cost_all,~,~,~, track_vec] = cinda_mex(scale, num_node, num_arc, excess_node, excess_flow, tail, head, low, acap, cost);
 toc;
 % handle the null set
 if cost_all >= 0 || isempty(track_vec)

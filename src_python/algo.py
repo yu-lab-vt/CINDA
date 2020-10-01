@@ -54,9 +54,9 @@ def mcc4mot(detection_arcs, transition_arcs):
 # set of ordered detection ids, which indicate a trajectory
 # cost: costs of these trajectories
 
-	_cs2 = ctypes.CDLL('./libcs2.so')
-	_cs2.pyCS2.argtypes = (ctypes.POINTER(ctypes.c_long), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double))
-	_cs2.pyCS2.restype = ctypes.POINTER(ctypes.c_longlong)
+	_cinda = ctypes.CDLL('./src_c/lib_cinda_funcs.so')
+	_cinda.pyCS2.argtypes = (ctypes.POINTER(ctypes.c_long), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double))
+	_cinda.pyCS2.restype = ctypes.POINTER(ctypes.c_longlong)
 
 
 	mtail, mhead, mlow, macap, mcost, msz = data_process(detection_arcs, transition_arcs)
@@ -69,7 +69,7 @@ def mcc4mot(detection_arcs, transition_arcs):
 	inf_type = ctypes.c_long * msz[0]
 	a_type = ctypes.c_double * msz[2]
 
-	track_vec = _cs2.pyCS2(inf_type(*msz), a_type(*mtail), a_type(*mhead), a_type(*mlow), a_type(*macap), a_type(*mcost))
+	track_vec = _cinda.pyCS2(inf_type(*msz), a_type(*mtail), a_type(*mhead), a_type(*mlow), a_type(*macap), a_type(*mcost))
 
 	cost = []
 	traj = []
