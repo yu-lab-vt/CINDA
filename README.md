@@ -42,7 +42,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
   <img height="120" src="img/Embryo_res.png">
 </p>
 
-# Reference
+# Cite
 ## Please cite our paper if you find the code useful for your research.
 Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework](https://ieeexplore.ieee.org/document/9204816), 	arXiv:1911.00796. (accepted by IEEE Trans. on PAMI)
 ```
@@ -53,7 +53,7 @@ Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking 
   year={2019}
 }
 ```
-
+# Reference
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
 
 [8] S. Sharma, J. A. Ansari, J. K. Murthy, and K. M. Krishna, “Beyond
