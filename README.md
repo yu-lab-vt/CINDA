@@ -16,7 +16,7 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 
 ## Pracitical efficiency comparisons with minimum-cost flow-based methods
 
-### Experiments on natural image benchmars
+### Experiments on natural image benchmarks
 <p align="center">
   <img height="330" src="img/kitti_car.png">
 </p>
@@ -38,8 +38,16 @@ Any problem? CINDA does not work on your data? Please open an issue. We are happ
 </p>
 
 # Reference
-## Citation
+## Please cite our paper if you find the code useful for your research.
 Congchao Wang, Yizhi Wang, Guoqiang Yu, [Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework](https://arxiv.org/abs/1911.00796), 	arXiv:1911.00796.
+```
+@article{cinda_mot,
+  title={Efficient Global Multi-object Tracking Under Minimum-cost Circulation Framework},
+  author={Wang, Congchao and Wang, Yizhi and Yu, Guoqiang},
+  journal={arXiv preprint arXiv:1911.00796},
+  year={2019}
+}
+```
 ## cs2
 [1].Goldberg, A. V. (1997). An efficient implementation of a scaling minimum-cost flow algorithm. Journal of algorithms, 22(1), 1-29.
 ## Affinity models and identity inference solvers

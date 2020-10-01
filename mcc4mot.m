@@ -15,6 +15,10 @@ function [trajectories, costs] = mcc4mot(detection_arcs,transition_arcs)
 % set of ordered detection ids, which indicate a trajectory
 % costs: costs of these trajectories
 
+if ~isempty(find(detection_arcs(:,1) < 1, 1))
+    error('Id should be positive integers from 1 to n.');
+end
+
 n = size(detection_arcs,1); 
 
 m = n*3+size(transition_arcs,1);
@@ -47,6 +51,18 @@ arcs(3*n+1:end,3) = transition_arcs(:,3);
 tail = arcs(:,1)';
 head = arcs(:,2)';
 cost = arcs(:,3)';
+
+% check inf arcs
+in_valid_arcs = find(isinf(abs(cost)));
+if ~isempty(in_valid_arcs)
+    warning('There are arcs with infinity cost. We will remove them first.');
+    tail(in_valid_arcs) = [];
+    head(in_valid_arcs) = [];
+    cost(in_valid_arcs) = [];
+    m = length(cost);
+    n = max(max(tail), max(head));
+end
+
 it_flag = false;
 if ~isempty(find(cost > floor(cost), 1))
     it_flag = true;
@@ -68,11 +84,18 @@ excess_flow = 0;
 % cost = [cost, 0];
 % low = [low, 0];
 % acap = [acap, n];
-% call the cs2 function for min-cost circulation
+% call the manipulated cs2 function for min-cost circulation
 tic;
 [cost_all,~,~,~, track_vec] = cs2mex(scale, num_node, num_arc, excess_node, excess_flow, tail, head, low, acap, cost);
 toc;
-
+% handle the null set
+if cost_all >= 0 || isempty(track_vec)
+    warning(['Null trajectory set! Please check the cost design. ',...
+        'Note that high detection confidence corresponds to negative arc cost.']);
+    costs = 0;
+    trajectories = {};
+    return;
+end
 
 locs = find(track_vec<=0);
 if length(track_vec) > locs(end)
