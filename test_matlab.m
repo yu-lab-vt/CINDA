@@ -1,3 +1,4 @@
+addpath('src_matlab/', 'src_c');
 %% load affinity scores
 d_m = dlmread('sample/detecton_mat.txt');
 t_m = dlmread('sample/transition_mat.txt');
