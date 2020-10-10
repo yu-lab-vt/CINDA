@@ -1,6 +1,6 @@
 /* CINDA - (CIrculation Network based Data-Association)
 * 
-* This is an improved version of cs2 algorithm for solving the unit-capacity min-cost
+* This is an implementation of the CINDA framework. It solves the unit-capacity min-cost
 * circulation problem in multi-object tracking problem[1].
 * 
 * Quite a few functions here come from cs2[2], whose copyright belongs to IG Systems.
