@@ -42,7 +42,7 @@ num_arc = size(dat_in,1);
 
 
 excess_node = [1 n_nodes];
-excess_flow = [100 -100];
+excess_flow = [100 -100]; % debug purpose, select any integer number:[i, -i]
 
 low = zeros(1,num_arc);
 acap = ones(1,num_arc);
