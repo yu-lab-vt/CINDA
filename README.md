@@ -84,3 +84,5 @@ vol. 61, no. 4, pp. 987–1010, 2017.
 # Updates
 
 1) Sep.2020: Add the support to problems where detections can be shared across different trajectories.
+
+2) Nov.2020: Add support to python on win32 system (compiled by Mingw-w64 in Cygwin64).
