@@ -1,4 +1,5 @@
 import ctypes
+from sys import platform
 
 def data_process(detection_arcs, transition_arcs):
 	mtail = []
@@ -54,7 +55,10 @@ def mcc4mot(detection_arcs, transition_arcs):
 # set of ordered detection ids, which indicate a trajectory
 # cost: costs of these trajectories
 
-	_cinda = ctypes.CDLL('./src_c/lib_cinda_funcs.so')
+	if platform == "win32":
+		_cinda = ctypes.CDLL('./src_c/lib_cinda_funcs.dll')
+	else:
+		_cinda = ctypes.CDLL('./src_c/lib_cinda_funcs.so')
 	_cinda.pyCS2.argtypes = (ctypes.POINTER(ctypes.c_long), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double))
 	_cinda.pyCS2.restype = ctypes.POINTER(ctypes.c_longlong)
 
