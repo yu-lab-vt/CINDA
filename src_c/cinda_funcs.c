@@ -1988,6 +1988,7 @@ price_t* res_print(node *ndp, arc *arp, long nmin, double *cost)
 #endif
 
   free(tracks);
+  free(arc_visited);
   return tracks_nonredundant;
   /*printf("c\n");*/
 }
