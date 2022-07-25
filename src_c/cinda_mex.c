@@ -136,6 +136,7 @@ void mex_print(mxArray *plhs[], node *ndp, arc *arp, long nmin, double *cost)
   }
 #endif
 
+  free(arc_visited);
   /*printf("c\n");*/
 }
 
