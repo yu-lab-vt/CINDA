@@ -2333,6 +2333,10 @@ return (0);
 }
 /* --------------------   end of parser  -------------------*/
 
+void pyFreeTrackVec(price_t *track_vec) {
+free(track_vec);
+}
+
 /*int main (int argc, char **argv)*/
 price_t* pyCS2(long *msz, double *mtail, double *mhead, double *mlow, double *macap, double *mcost)
 {
