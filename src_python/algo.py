@@ -93,5 +93,9 @@ def mcc4mot(detection_arcs, transition_arcs):
     
 	if it_flag:
 		cost = [(float(n) / 10**7) for n in cost]
-        
+
+	_cinda.pyFreeTrackVec.argtypes = (ctypes.POINTER(ctypes.c_longlong), )
+	_cinda.pyFreeTrackVec.restype = None
+	_cinda.pyFreeTrackVec(track_vec)
+
 	return traj, cost
